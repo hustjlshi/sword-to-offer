@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int fb(TreeNode *p, bool &flag){
+        if(flag){
+            return 0;
+        }
+        if(p == NULL){
+            return 1;
+        }
+        int left = fb(p -> left, flag);
+        int right = fb(p -> right, flag);
+        if(abs(left - right) > 1){
+            flag = true;
+            return 0;
+        }
+        else{
+            return max(left, right) + 1;
+        }
+    }
+    bool IsBalanced_Solution(TreeNode* pRoot) {
+        bool flag = false;
+        int k = fb(pRoot, flag);
+        return !flag;
+    }
+};
