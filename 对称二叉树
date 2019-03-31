@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool fb(TreeNode *p, TreeNode *q){
+        if(p == NULL && q == NULL){
+            return true;
+        }
+        if(p == NULL || q == NULL || p -> val != q -> val){
+            return false;
+        }
+        return fb(p -> left, q -> right) && fb(p -> right, q -> left);
+    }
+        
+    bool isSymmetrical(TreeNode* pRoot)
+    {
+        if(pRoot == NULL) return true;
+        return fb(pRoot -> left, pRoot -> right);
+    }
+
+};
