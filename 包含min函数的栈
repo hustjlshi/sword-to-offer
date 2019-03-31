@@ -1,0 +1,38 @@
+class Solution {
+public:
+    stack<int> a;
+    stack<int> b;
+    void push(int value) {
+        a.push(value);
+    }
+    void pop() {
+        if(!a.empty())
+         a.pop();
+    }
+    int top() {
+        if(!a.empty())
+        return a.top();
+        else
+            return 0;
+    }
+    int min() {
+        int min1=100000;
+        if(!a.empty()){
+        while(!a.empty()){
+            if(a.top()<min1)
+                min1=a.top();
+            int tem=a.top();
+            a.pop();
+            b.push(tem);
+           }
+        }
+        while(!b.empty()){
+            int tem=b.top();
+            b.pop();
+            a.push(tem);
+        }
+        return min1;
+        
+    }
+    
+};
