@@ -1,0 +1,30 @@
+class Solution:
+    def IsContinuous(self, numbers):
+        # write code here
+        length = len(numbers)
+        if length == 0:
+            return False
+        zero = 0
+        for i in range(length):
+            if numbers[i] == 0:
+                zero += 1
+        numbers.sort()
+        if zero == 4:
+            return True
+        i = 0
+        while numbers[i] == 0:
+            i += 1
+        i += 1
+        while i < length:
+            cha = numbers[i] - numbers[i - 1]
+            if cha == 0:
+                return False
+            elif cha == 1:
+                i += 1
+            else:
+                if cha > zero + 1:
+                    return False
+                else:
+                    zero -= (cha - 1)
+                    i += 1
+        return True
