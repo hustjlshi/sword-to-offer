@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int cb(int a, int b){
+        int ans = 0;
+        while(a > 0){
+            ans += a % 10;
+            a /= 10;
+        }
+        while(b > 0){
+            ans += b % 10;
+            b /= 10;
+        }
+        return ans;
+    }
+    void fb(vector<vector<bool>> &mp, int threshold, int rows, int cols, int &sum, int i, int j){
+        if(mp[i][j]){
+            return;
+        }
+        if(cb(i, j) > threshold){
+            return;
+        }
+        mp[i][j] = true;
+        sum ++;
+        if(i > 0){
+            fb(mp, threshold, rows, cols, sum, i - 1, j);
+        }
+        if(i < rows - 1){
+            fb(mp, threshold, rows, cols, sum, i + 1, j);
+        }
+        if(j > 0){
+            fb(mp, threshold, rows, cols, sum, i, j - 1);
+        }
+        if(j < cols - 1){
+            fb(mp, threshold, rows, cols, sum, i, j + 1);
+        }
+    }
+    int movingCount(int threshold, int rows, int cols)
+    {
+        vector<vector<bool>> mp(rows, vector<bool> (cols, false));
+        int sum = 0;
+        fb(mp, threshold, rows, cols, sum, 0, 0);
+        return sum;
+    }
+};
