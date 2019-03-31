@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<int> printMatrix(vector<vector<int> > matrix) {
+        vector<int> ans;
+        int star=0;
+        int col=matrix[0].size();
+        int low=matrix.size();
+        if(col==0||low==0)
+            return ans;
+        if(col==1)
+        {
+            for(int i=0;i<low;i++){
+                ans.push_back(matrix[i][0]);
+            }
+            return ans;
+        }
+        if(low==1)
+        {
+            for(int i=0;i<col;i++){
+                ans.push_back(matrix[0][i]);
+            }
+            return ans;
+        }
+        while(star*2<col&&star*2<low){
+            for(int j=star,i=star;j<=col-star-1;j++){
+                ans.push_back(matrix[i][j]);
+            }
+            if(col-star-1>star)
+            {for(int j=col-star-1,i=star+1;i<=low-star-1;i++){
+                ans.push_back(matrix[i][j]);
+            }}
+            if(low-star-1>star&&col-star-1>star)
+            { for(int i=low-star-1,j=col-star-2;j>=star;j--){
+                ans.push_back(matrix[i][j]);
+            }}
+            if(low-star-1>star&&col-star>star+1)
+            {for(int j=star,i=low-star-2;i>star;i--){
+                ans.push_back(matrix[i][j]);}
+            }
+            star++;
+        }
+        return ans;
+        
+    }
+};
