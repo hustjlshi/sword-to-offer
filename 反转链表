@@ -1,0 +1,22 @@
+class Solution {
+public:
+    ListNode* fb(ListNode *p, ListNode *q){
+        if(p == q) return q;
+        ListNode *tem;
+        tem = p;
+        p = p -> next;
+        tem -> next = q -> next;
+        q -> next = tem;
+        return fb(p, q);
+    }
+    ListNode* ReverseList(ListNode* pHead) {
+        ListNode *p,*q;
+        p = pHead;
+        if(p == NULL) return p;
+        while(p -> next != NULL){
+            p = p -> next;
+        }
+        q = pHead;
+        return fb(q, p);
+    }
+};
