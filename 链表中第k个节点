@@ -1,0 +1,19 @@
+class Solution {
+public:
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        ListNode *p, *q;
+        p = pListHead;
+        while(p != NULL && k > 0){
+            p = p -> next;
+            k--;
+        }
+        if(k > 0) return NULL;
+        q = pListHead;
+        while(p != NULL){
+            p = p -> next;
+            q = q -> next;
+        }
+        return q;
+        
+    }
+};
