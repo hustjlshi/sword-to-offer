@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        ListNode *p=head;
+        vector<int> tem;
+        while(p!=NULL){
+            tem.push_back(p->val);
+            p=p->next;
+        }
+        reverse(tem.begin(), tem.end());
+        return tem;
+    }
+};
