@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        int ji = INT_MAX;
+        int left = 0;
+        int right = array.size() - 1;
+        vector<int> ans;
+        int i = -1;
+        int j = -1;
+        if(array.size() < 2) return {};
+        while(left < right){
+            if(array[left] + array[right] == sum){
+                if(array[left] * array[right] < ji){
+                    ji = array[left] * array[right];
+                    i = left;
+                    j = right;
+                }
+                left++;
+                right--;
+            }
+            else if(array[left] + array[right] < sum){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+        if(i == -1) return {};
+        ans.push_back(array[i]);
+        ans.push_back(array[j]);
+        return ans;
+    }
+};
