@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> vec;
+    void Insert(int num)
+    {  
+        vec.push_back(num);
+    }
+
+    double GetMedian()
+    { 
+       sort(vec.begin(), vec.end());
+        int n = vec.size();
+        if(n == 0){
+            return 0;
+        }
+        if(n %2 == 0){
+            return (double)(vec[n / 2] + vec[n / 2 - 1]) / 2;
+        }
+        else{
+            return (double)vec[n / 2];
+        }
+    }
+
+};
