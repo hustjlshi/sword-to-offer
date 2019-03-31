@@ -1,0 +1,23 @@
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* pHead)
+    {
+        ListNode *head, *p, *q;
+        head = new ListNode(0);
+        head -> next = pHead;
+        p = head;
+        while(p -> next != NULL){
+            q = p -> next -> next;
+            while(q != NULL && q -> val == p -> next -> val){
+                q = q -> next;
+            }
+            if(q == p -> next -> next){
+                p = p -> next;
+            }
+            else{
+                p -> next = q;
+            }
+        }
+        return head -> next;
+    }
+};
