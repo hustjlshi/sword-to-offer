@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        int count = 0;
+        int tem;
+        for(int c : numbers){
+            if(count == 0){
+                count++;
+                tem = c;
+            }
+            else{
+                if(tem == c){
+                    count++;
+                }
+                else{
+                    count--;
+                }
+            }
+        }
+        count = 0;
+        for(int c : numbers){
+            if(c == tem) count++;
+        }
+        if(count > numbers.size() / 2) return tem;
+        else return 0;
+        return 0;
+    }
+};
