@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int> > FindContinuousSequence(int sum) {
+        int sum1=0;
+        int k=0;
+        vector<vector<int> > ans;
+        if(sum<3)
+            return ans;
+        for(int i=1;i<=sum/2;i++){
+            sum1=0;
+            int j=i;
+            vector<int> ans1;
+            while(sum1<sum){
+                sum1=sum1+j;
+                j++;
+            }
+            if(sum1==sum){
+                for(int m=i;m<j;m++)
+                {ans1.push_back(m);}
+               ans.push_back(ans1);
+            }
+        }
+        return ans;
+    }
+};
