@@ -1,0 +1,43 @@
+class Solution {
+public:
+    void fb(vector<vector<int>> &ans, stack<TreeNode*> s, bool flag){
+        if(s.empty())
+            return;
+        vector<int> tem;
+        stack<TreeNode*> s1;
+        while(!s.empty()){
+            TreeNode *k = s.top();
+            s.pop();
+            tem.push_back(k -> val);
+            if(flag){
+                if(k -> left != NULL){
+                    s1.push(k -> left);
+                }
+                if(k -> right != NULL){
+                    s1.push(k -> right);
+                }
+            }
+            else{
+                if(k -> right != NULL){
+                    s1.push(k -> right);
+                }
+                if(k -> left != NULL){
+                    s1.push(k -> left);
+                }
+            }
+        }
+        ans.push_back(tem);
+        fb(ans, s1, !flag);
+    }
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        stack<TreeNode*> s;
+        vector<vector<int>> ans;
+        if(pRoot == NULL){
+            return ans;
+        }
+        s.push(pRoot);
+        fb(ans, s, true);
+        return ans;
+    }
+    
+};
