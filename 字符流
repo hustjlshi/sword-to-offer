@@ -1,0 +1,28 @@
+class Solution
+{
+public:
+  //Insert one char from stringstream
+    void Insert(char ch)
+    {
+        q.push(ch);
+        mp[ch]++;
+    }
+  //return the first appearence once char in current stringstream
+    char FirstAppearingOnce()
+    {
+        while(!q.empty()){
+            char tem = q.front();
+            if(mp[tem] == 1){
+                return tem;
+            }
+            else{
+                q.pop();
+            }
+        }
+        return '#';
+    }
+    private:
+        unordered_map<char, int> mp;
+        queue<char> q;
+
+};
