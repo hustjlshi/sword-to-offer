@@ -1,0 +1,47 @@
+class Solution {
+public:
+    void fb(vector<string> &a,int i,int j,char* str,int k,int rows,int cols,int &flag){
+        if(k==strlen(str)-1&&a[i][j]==*(str+k))
+            flag=1;
+        else if(a[i][j]==*(str+k)){
+            char tem=a[i][j];
+            a[i][j]='.';
+            if(i<rows-1){
+                fb(a,i+1,j,str,k+1,rows,cols,flag);
+            }
+            if(i>0){
+                 fb(a,i-1,j,str,k+1,rows,cols,flag);
+            }
+            if(j>0){
+                 fb(a,i,j-1,str,k+1,rows,cols,flag);
+            }
+            if(j<cols-1){
+                 fb(a,i,j+1,str,k+1,rows,cols,flag);
+            }
+            a[i][j]=tem;
+        }
+    }
+    bool hasPath(char* matrix, int rows, int cols, char* str)
+    {   int flag=0;
+        vector<string> a;
+        if(rows==0||cols==0)
+            return false;
+        int m=0;
+        for(int i=0;i<rows;i++){
+            string b;
+            for(int j=0;j<cols;j++){
+                b.push_back(matrix[m]);
+                    m++;
+            }
+            a.push_back(b);
+        }
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                fb(a,i,j,str,0,rows,cols,flag);
+                    if(flag==1)
+                        return true;
+                }
+            }
+     return false;
+        }
+};
