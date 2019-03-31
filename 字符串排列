@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void fb(string str, int i, vector<string> &ans){
+        if(i >= str.size()){
+            ans.push_back(str);
+            return ;
+        }
+        for(int j = i; j < str.size(); j++){
+            bool flag = false;
+            for(int k = j - 1; k >= i; k--){
+                if(str[k] == str[j]){
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag){
+                continue;
+            }
+            swap(str[i], str[j]);
+            fb(str, i + 1, ans);
+            swap(str[i], str[j]);
+        }
+    }
+    vector<string> Permutation(string str) {
+        vector<string> ans;
+        if(str.size() == 0)
+            return ans;
+        fb(str, 0, ans);
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
