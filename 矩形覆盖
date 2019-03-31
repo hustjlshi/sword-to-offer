@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int rectCover(int number) {
+        if(number==0)
+            return 0;
+        if(number==1)
+          return 1;
+        if(number==2)
+            return 2;
+        int ans;
+        int i=1;
+        int j=2;
+        int tem;
+        int k=2;
+        ans=i;
+        while(k<=number){
+            tem=i;
+            i=j;
+            j=tem+i;
+            k++;
+        }
+        return i;
+    }
+};
