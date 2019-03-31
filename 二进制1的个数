@@ -1,0 +1,41 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def tob(self, a):
+        ans = []
+        k = 0
+        while k < 32:
+            ans.append(a % 2)
+            a //= 2
+            k += 1
+        return ans
+    def NumberOf1(self, n):
+        # write code here
+        flag = True
+        if n == 0:
+            return 0
+        if n == -2147483648:
+            return 1
+        if n < 0:
+            flag = False
+            n = -n
+        ans = Solution.tob(self, n)
+        if flag:
+            k = ans.count(1)
+            return k
+        else:
+            for i in range(len(ans)):
+                if ans[i] > 0:
+                    ans[i] = 0
+                else:
+                    ans[i] = 1
+            k = 1
+            for i in range(len(ans)):
+                if ans[i] == 1 and k == 1:
+                    ans[i] = 0
+                    k = 1
+                else:
+                    if k != 0:
+                        ans[i] = 1
+                    break
+            k = ans.count(1)
+            return k
