@@ -1,0 +1,49 @@
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if(pHead == NULL){
+           return NULL;
+        }
+        RandomListNode *p, *q, *tem, *ans;
+        p = pHead;
+        while(p != NULL){
+            tem = new RandomListNode(p -> label);
+            tem -> next = p -> next;
+            p -> next = tem;
+            p = tem -> next;
+        }
+        p = pHead;
+        q = p -> next;
+        while(q != NULL){
+            if(p -> random != NULL){
+                q -> random = p -> random -> next;
+            }
+            else{
+                q -> random = NULL;
+            }
+            if(q -> next == NULL){
+                break;
+            }
+            else{
+                q = q -> next -> next;
+                p = p -> next -> next;
+            }
+        }
+        p = pHead;
+        q = p -> next;
+        ans = q;
+        while(q != NULL){
+            p -> next = q -> next;
+            p = p -> next;
+            if(p == NULL){
+                break;
+            }
+            else{
+                q -> next = p -> next;
+                q = q -> next;
+            }
+        }
+        return ans;
+    }
+};
