@@ -1,0 +1,22 @@
+class Solution:
+    def multiply(self, A):
+        # write code here
+        left = []
+        k = 1
+        left.append(1)
+        for i in range(0, len(A)):
+            k *= A[i]
+            left.append(k)
+        print(left)
+        right = []
+        k = 1
+        for i in range(len(A) - 1 , -1 , -1):
+            k *= A[i]
+            right.append(k)
+        right = right[::-1]
+        right.append(1)
+        print(right)
+        ans = []
+        for i in range(len(A)):
+            ans.append(left[i] * right[i + 1])
+        return ans
