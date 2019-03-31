@@ -1,0 +1,26 @@
+class Solution {
+public:
+    TreeNode* fb(vector<int> pre,vector<int> vin,int l1,int left,int right1){
+        TreeNode *root=new TreeNode(pre[l1]);
+        int i;
+        for(i=left;vin[i]!=pre[l1];++i);
+        if(i!=left){
+            root->left=fb(pre,vin,l1+1,left,i-1);
+        }
+        else{
+            root->left=NULL;
+        }
+        if(i!=right1){
+            root->right=fb(pre,vin,l1+i-left+1,i+1,right1);
+        }
+        else{
+             root->right=NULL;
+        }
+        return root;
+    }
+    TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
+           if(vin.size()==0)
+               return NULL;
+           return fb(pre,vin,0,0,vin.size()-1);
+    }
+};
