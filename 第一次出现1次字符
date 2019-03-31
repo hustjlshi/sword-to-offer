@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int FirstNotRepeatingChar(string str) {
+        vector<int> dp(128, 0);
+        for(int i = 0; i < str.size(); i++){
+            dp[str[i] - 'A']++;
+        }
+        for(int i = 0; i < str.size(); i++){
+            if(dp[str[i] - 'A'] == 1) return i;
+        }
+        return -1;
+    }
+};
