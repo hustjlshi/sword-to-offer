@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int Fibonacci(int n) {
+        if(n==0)
+            return 0;
+         if(n==1)
+             return 1;
+        int k1=0,k2=1;
+        int tem;
+        n=n-1;
+         while(n>0){
+             tem=k1+k2;
+             k1=k2;
+             k2=tem;
+             n--;
+         }
+        return k2;
+    }
+};
