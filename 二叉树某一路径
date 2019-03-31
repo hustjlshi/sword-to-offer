@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void fb(TreeNode *root, vector<int> tem, int sum, int k, vector<vector<int>> &ans){
+        sum += root -> val;
+        tem.push_back(root -> val);
+        if(sum > k)
+            return ;
+        if(root -> left == NULL && root -> right == NULL){
+            if(sum == k){
+                ans.push_back(tem);
+                return;
+            }
+            else{
+                return;
+            }
+        }
+        if(root -> left != NULL)
+        fb(root -> left, tem, sum, k, ans);
+        if(root -> right != NULL)
+        fb(root -> right, tem, sum, k, ans);
+    }
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        vector<int> tem;
+        vector<vector<int>> ans;
+        if(root == NULL){
+            return ans;
+        }
+        fb(root, tem, 0, expectNumber, ans);
+        sort(ans.begin(), ans.end(), [](vector<int> a, vector<int> b){return a.size() > b.size();});
+        return ans;
+    }
+};
