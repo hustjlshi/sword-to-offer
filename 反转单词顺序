@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string ReverseSentence(string str) {
+        string ans;
+        int len=str.size();
+        if(len==0)
+            return ans;
+        while(len-1>=0){
+            string tem;
+            while(len-1>=0&&str[len-1]!=' '){
+                tem.push_back(str[len-1]);
+                len--;
+            }
+            len--;
+            int k=tem.size()-1;
+            for(int i=k;i>=0;i--){
+                ans.push_back(tem[i]);
+            }
+            if(len!=-1)
+                    ans.push_back(' ');
+        }
+        return ans;
+    }
+};
