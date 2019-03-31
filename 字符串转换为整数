@@ -1,0 +1,27 @@
+class Solution:
+    def StrToInt(self, s):
+        # write code here
+        length = len(s)
+        if length == 0:
+            return 0
+        ans = 0
+        k = 1
+        i = length - 1
+        while i > 0:
+            if s[i] < '0' or s[i] > '9':
+                return 0
+            else:
+                ans += int(s[i]) * k
+                k *= 10
+            i -= 1
+        if s[i] == '-':
+            return -ans
+        elif s[i] == '+':
+            return ans
+        else:
+            if s[i] < '0' or s[i] > '9':
+                return 0
+            else:
+                ans += int(s[i]) * k
+                k *= 10
+            return ans
