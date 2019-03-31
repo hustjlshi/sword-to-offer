@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void fb(TreeNode* root, int &k, TreeNode *&ans){
+        if(root -> left != NULL){
+            fb(root -> left, k, ans);
+        }
+        if(k == 1) ans = root;
+        k--;
+        if(root -> right != NULL){
+            fb(root -> right, k, ans);
+        }
+    }
+    TreeNode* KthNode(TreeNode* pRoot, int k)
+    {   
+        if(k < 1)
+            return NULL;
+        if(pRoot == NULL){
+            return NULL;
+        }
+        TreeNode *ans = NULL;
+        fb(pRoot, k, ans);
+        return ans;
+    }
+
+};
