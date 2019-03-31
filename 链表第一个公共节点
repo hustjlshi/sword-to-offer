@@ -1,0 +1,22 @@
+class Solution {
+public:
+    ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+        ListNode *p,*q,*tem;
+        p=pHead1;
+        q=pHead2;
+        if(p==NULL||q==NULL)
+            return NULL;
+        while(p!=NULL){
+            q=pHead2;
+            while(q!=NULL){
+                if(p->val==q->val)
+                {tem=p;
+                 return tem;
+                }
+                q=q->next;
+            }
+            p=p->next;
+        }
+        return NULL;
+    }
+};
