@@ -1,0 +1,21 @@
+class Solution {
+public:
+    TreeLinkNode* GetNext(TreeLinkNode* pNode)
+    {
+        TreeLinkNode *p;
+        if(pNode == NULL) return NULL;
+        if(pNode -> right != NULL){
+            p = pNode -> right;
+            while(p -> left != NULL) p = p -> left;
+            return p;
+        }
+        else{
+            while(pNode -> next != NULL){
+                p = pNode -> next;
+                if(p -> left == pNode) return p;
+                else pNode = p;
+            }
+            return NULL;
+        }
+    }
+};
