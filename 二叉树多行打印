@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void fb(vector<vector<int>> &ans, queue<TreeNode *> qu){
+        if(qu.empty())
+            return;
+        vector<int> tem;
+        queue<TreeNode*> tem1;
+        while(!qu.empty()){
+            tem.push_back(qu.front() -> val);
+            if(qu.front() -> left != NULL)
+            tem1.push(qu.front() -> left);
+            if(qu.front() -> right != NULL)
+            tem1.push(qu.front() -> right);
+            qu.pop();
+        }
+        ans.push_back(tem);
+        fb(ans, tem1);
+    }
+        vector<vector<int> > Print(TreeNode* pRoot) {
+            queue<TreeNode*> qu;
+            vector<vector<int>> ans;
+            if(pRoot != NULL){
+                qu.push(pRoot);
+                fb(ans, qu);
+                return ans;
+            }
+            else{
+                return ans;
+            }
+        }
+    
+};
