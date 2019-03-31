@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool fb(TreeNode *p1, TreeNode *p2){
+        if(p2 == NULL){
+            return true;
+        }
+        else if(p1 == NULL && p2 != NULL){
+            return false;
+        }
+        else if(p1 -> val != p2 -> val){
+            return false;
+        }
+        else{
+            return fb(p1 -> left, p2 -> left) && fb(p1 -> right, p2 -> right);
+        }
+    }
+    bool fc(TreeNode *p, TreeNode *q){
+        if(p == NULL)
+            return false;
+        else if(fb(p, q))
+            return true;
+        else{
+            return fc(p -> left, q) || fc(p -> right, q);
+        }
+    }
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+           if(pRoot2 == NULL){
+               return false;
+           }
+        return fc(pRoot1, pRoot2);
+    }
+};
