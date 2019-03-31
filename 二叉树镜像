@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void fb(TreeNode *pRoot){
+        if(pRoot==NULL||pRoot->left==NULL&&pRoot->right==NULL){
+            return ;
+        }
+        TreeNode* tem;
+        tem=pRoot->left;
+        pRoot->left=pRoot->right;
+        pRoot->right=tem;
+        if(pRoot->left)
+            fb(pRoot->left);
+        if(pRoot->right)
+            fb(pRoot->right);
+    }
+    void Mirror(TreeNode *pRoot) {
+         fb(pRoot);
+    }
+};
