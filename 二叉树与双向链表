@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void fb(TreeNode *p, TreeNode *&pre){
+    if(p == NULL) return;
+    fb(p -> left, pre);
+    p -> left = pre;
+    if(pre) pre -> right = p;
+    pre = p;
+    fb(p -> right, pre);
+}
+
+TreeNode* Convert(TreeNode* pRootOfTree){
+    TreeNode *pre = NULL;
+    fb(pRootOfTree, pre);
+    pre = pRootOfTree;
+    if(pre == NULL) return pre;
+    while(pre -> left != NULL){
+        pre = pre -> left;
+    }
+    return pre;
+}
+};
